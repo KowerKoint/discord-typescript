@@ -3,8 +3,6 @@ import { BotRunner, Command} from "../interfaces"
 import { Client, Intents, Interaction } from "discord.js";
 import { Ping } from "../commands/ping";
 
-require('dotenv').config();
-
 export class QuestionnaireBot implements BotRunner {
     async awake() {
         const client = new Client({
