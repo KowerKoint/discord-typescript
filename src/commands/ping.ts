@@ -8,6 +8,6 @@ export class Ping implements Command {
     };
 
     async execute(client: Client, interaction: CommandInteraction) {
-        interaction.reply("pong");
+        await interaction.reply("pong");
     }
 }
