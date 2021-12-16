@@ -5,16 +5,18 @@ const discord_js_1 = require("discord.js");
 const ping_1 = require("../commands/ping");
 const question_1 = require("../commands/question");
 class QuestionnaireBot {
-    client = new discord_js_1.Client({
-        intents: [
-            discord_js_1.Intents.FLAGS.GUILDS,
-            discord_js_1.Intents.FLAGS.GUILD_MESSAGES,
-        ]
-    });
-    commands = [
-        new ping_1.Ping,
-        new question_1.Question,
-    ];
+    constructor() {
+        this.client = new discord_js_1.Client({
+            intents: [
+                discord_js_1.Intents.FLAGS.GUILDS,
+                discord_js_1.Intents.FLAGS.GUILD_MESSAGES,
+            ]
+        });
+        this.commands = [
+            new ping_1.Ping,
+            new question_1.Question,
+        ];
+    }
     async awake() {
         this.client.once('ready', () => { this.on_ready(); });
         this.client.on('interactionCreate', (interaction) => { this.on_interaction(interaction); });
@@ -28,7 +30,7 @@ class QuestionnaireBot {
             const button = interaction.component;
             if (message.type != "APPLICATION_COMMAND")
                 return;
-            if (button?.type !== "BUTTON")
+            if ((button === null || button === void 0 ? void 0 : button.type) !== "BUTTON")
                 return;
             if (embed.fields == undefined)
                 return;
@@ -77,9 +79,8 @@ class QuestionnaireBot {
         }
     }
     async on_ready() {
-        await this.client.application?.commands
-            .set(this.commands.map((com) => com.data))
-            .then(() => { console.log("commands added"); });
+        var _a;
+        await ((_a = this.client.application) === null || _a === void 0 ? void 0 : _a.commands.set(this.commands.map((com) => com.data)).then(() => { console.log("commands added"); }));
         console.log('QuestionnaireBot is ready!');
     }
 }

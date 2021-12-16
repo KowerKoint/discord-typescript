@@ -3,68 +3,70 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Question = void 0;
 const discord_js_1 = require("discord.js");
 class Question {
-    data = {
-        name: "question",
-        description: "アンケートを取る",
-        options: [
-            {
-                type: "STRING",
-                name: "question",
-                required: true,
-                description: "質問"
-            },
-            {
-                type: "STRING",
-                name: "option1",
-                description: "1つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option2",
-                description: "2つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option3",
-                description: "3つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option4",
-                description: "4つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option5",
-                description: "5つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option6",
-                description: "6つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option7",
-                description: "7つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option8",
-                description: "8つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option9",
-                description: "9つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option10",
-                description: "10個目の選択肢"
-            },
-        ]
-    };
+    constructor() {
+        this.data = {
+            name: "question",
+            description: "アンケートを取る",
+            options: [
+                {
+                    type: "STRING",
+                    name: "question",
+                    required: true,
+                    description: "質問"
+                },
+                {
+                    type: "STRING",
+                    name: "option1",
+                    description: "1つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option2",
+                    description: "2つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option3",
+                    description: "3つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option4",
+                    description: "4つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option5",
+                    description: "5つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option6",
+                    description: "6つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option7",
+                    description: "7つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option8",
+                    description: "8つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option9",
+                    description: "9つ目の選択肢"
+                },
+                {
+                    type: "STRING",
+                    name: "option10",
+                    description: "10個目の選択肢"
+                },
+            ]
+        };
+    }
     async execute(client, interaction) {
         const option_indexes = [
             "option1",
