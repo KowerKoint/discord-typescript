@@ -1,4 +1,4 @@
-import { ApplicationCommandData, Client, CommandInteraction, EmbedFieldData, MessageActionRow, MessageButton, MessageEmbed, MessageEmbedOptions } from "discord.js";
+import { ApplicationCommandData, Client, CommandInteraction, DiscordAPIError, EmbedFieldData, MessageActionRow, MessageButton, MessageEmbed, MessageEmbedOptions } from "discord.js";
 import { Command } from "../interfaces"
 
 export class Question implements Command {
@@ -76,12 +76,17 @@ export class Question implements Command {
         });
         embed.fields = fields;
         console.log(options);
-        await interaction.reply({
-            content: "アンケートが作成されました",
-            embeds: [ embed ],
-            components: [ new MessageActionRow().addComponents(buttons) ]
-        }).then(() => {
-            console.log("replied in question");
-        });
+        try {
+            await interaction.reply({
+                content: "アンケートが作成されました",
+                embeds: [ embed ],
+                components: [ new MessageActionRow().addComponents(buttons) ]
+            }).then(() => {
+                console.log("replied in question");
+            });
+        } catch (e) {
+            await interaction.reply("エラーが発生しました:\n" + e);
+            console.log(e);
+        }
     }
 }
