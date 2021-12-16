@@ -1,1 +1,1 @@
-discord: yarn compile && yarn start 
+discord: yarn start 
