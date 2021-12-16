@@ -1,1 +1,1 @@
-discord: yarn debug
+discord: yarn start
