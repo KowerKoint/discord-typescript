@@ -37,31 +37,6 @@ export class Question implements Command {
                 name: "option5",
                 description: "5つ目の選択肢"
             },
-            {
-                type: "STRING",
-                name: "option6",
-                description: "6つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option7",
-                description: "7つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option8",
-                description: "8つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option9",
-                description: "9つ目の選択肢"
-            },
-            {
-                type: "STRING",
-                name: "option10",
-                description: "10個目の選択肢"
-            },
         ]
     };
 
@@ -72,11 +47,6 @@ export class Question implements Command {
             "option3",
             "option4",
             "option5",
-            "option6",
-            "option7",
-            "option8",
-            "option9",
-            "option10",
         ];
         const options: string[][] = [];
         option_indexes.forEach((option_index) => {
