@@ -1,7 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
-        "target": "ESNext",
+        "target": "ES2019",
         "module": "CommonJS",
         "outDir": "./build",
         "rootDir": "./src",
