@@ -39,31 +39,6 @@ class Question {
                     name: "option5",
                     description: "5つ目の選択肢"
                 },
-                {
-                    type: "STRING",
-                    name: "option6",
-                    description: "6つ目の選択肢"
-                },
-                {
-                    type: "STRING",
-                    name: "option7",
-                    description: "7つ目の選択肢"
-                },
-                {
-                    type: "STRING",
-                    name: "option8",
-                    description: "8つ目の選択肢"
-                },
-                {
-                    type: "STRING",
-                    name: "option9",
-                    description: "9つ目の選択肢"
-                },
-                {
-                    type: "STRING",
-                    name: "option10",
-                    description: "10個目の選択肢"
-                },
             ]
         };
     }
@@ -74,11 +49,6 @@ class Question {
             "option3",
             "option4",
             "option5",
-            "option6",
-            "option7",
-            "option8",
-            "option9",
-            "option10",
         ];
         const options = [];
         option_indexes.forEach((option_index) => {
@@ -107,13 +77,19 @@ class Question {
         });
         embed.fields = fields;
         console.log(options);
-        await interaction.reply({
-            content: "アンケートが作成されました",
-            embeds: [embed],
-            components: [new discord_js_1.MessageActionRow().addComponents(buttons)]
-        }).then(() => {
-            console.log("replied in question");
-        });
+        try {
+            await interaction.reply({
+                content: "アンケートが作成されました",
+                embeds: [embed],
+                components: [new discord_js_1.MessageActionRow().addComponents(buttons)]
+            }).then(() => {
+                console.log("replied in question");
+            });
+        }
+        catch (e) {
+            await interaction.reply("エラーが発生しました:\n" + e);
+            console.log(e);
+        }
     }
 }
 exports.Question = Question;
