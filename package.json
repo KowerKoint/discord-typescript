@@ -4,6 +4,10 @@
     "main": "index.js",
     "author": "KowerKoint <kowerkoint@gmail.com>",
     "license": "MIT",
+    "engines": {
+      "npm": "17.x",
+      "yarn": "1.x"
+    },
     "scripts": {
         "start": "node ./build/index.js",
         "debug": "ts-node ./src/index.ts",
