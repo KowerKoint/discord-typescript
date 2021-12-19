@@ -56,8 +56,8 @@ export class Question implements Command {
             }
         });
         if(options.length == 0) {
-            options.push([interaction.id + "_yes", "はい"]);
-            options.push([interaction.id + "_no", "いいえ"]);
+            options.push(["yes", "はい"]);
+            options.push(["no", "いいえ"]);
         }
         const embed: MessageEmbedOptions = {};
         embed.title = interaction.options.getString("question")!;
@@ -69,7 +69,7 @@ export class Question implements Command {
                 "value": "回答者: "
             });
             buttons.push(new MessageButton()
-                .setCustomId(interaction.id + "_" + option[0])
+                .setCustomId("question" + "_" + interaction.id + "_" + option[0])
                 .setStyle("PRIMARY")
                 .setLabel(option[1])
                 );
