@@ -3,13 +3,10 @@ import { Button } from "../interfaces";
 
 export class QuestionButton implements Button {
     async pushed(interaction: ButtonInteraction) {
-        console.log(interaction.customId);
         if(interaction.customId.indexOf("question") != 0) return;
         const message = interaction.message;
         const embed = message.embeds[0];
         const button = interaction.component;
-        console.log("message=", message);
-        console.log("message.type=", message.type);
         if(message.type != "APPLICATION_COMMAND") return;
         if(button?.type !== "BUTTON") return;
         if(embed.fields == undefined) return;
@@ -33,7 +30,7 @@ export class QuestionButton implements Button {
         await message.edit({
             embeds: [ embed ],
         }).then(async () => {
-            console.log("button pushed");
+            console.log("button pushed:", interaction.customId);
             if(cleared) {
                 await interaction.reply({
                     content: "回答を撤回しました",
