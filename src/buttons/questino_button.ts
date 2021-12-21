@@ -28,10 +28,10 @@ export class QuestionButton implements Button {
             }
             return field;
         });
-        console.log(message);
         await message.edit({
             embeds: [ embed ],
         }).then(async () => {
+            console.log("message=", message);
             console.log("button pushed");
             if(cleared) {
                 await interaction.reply({
