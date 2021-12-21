@@ -2,7 +2,7 @@ import { BotRunner, Button, Command} from "../interfaces"
 import { Client, Intents, Interaction } from "discord.js";
 import { Ping } from "../commands/ping";
 import { Question } from "../commands/question";
-import { QuestionButton } from "../buttons/questino_button";
+import { QuestionButton } from "../buttons/question_button";
 
 export class QuestionnaireBot implements BotRunner {
     private client = new Client({
