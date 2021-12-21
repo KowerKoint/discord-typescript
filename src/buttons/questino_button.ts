@@ -28,6 +28,7 @@ export class QuestionButton implements Button {
             }
             return field;
         });
+        console.log(message);
         await message.edit({
             embeds: [ embed ],
         }).then(async () => {
