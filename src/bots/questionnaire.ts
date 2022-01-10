@@ -28,6 +28,11 @@ export class QuestionnaireBot implements BotRunner {
     }
     
     async on_interaction(interaction: Interaction) {
+        const guild = interaction.guild;
+        if(guild !== null) {
+            await guild.fetch();
+        }
+        await interaction.user.fetch();
         if(interaction.isButton()) {
             this.buttons.forEach(async (button) => {
                 await button.pushed(interaction);
