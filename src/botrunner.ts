@@ -1,32 +1,27 @@
-import { BotRunner, Button, Command} from "../interfaces"
+import { BotInfo, Button, Command} from "./interfaces"
 import { Client, Intents, Interaction } from "discord.js";
-import { Ping } from "../commands/ping";
-import { Question } from "../commands/question";
-import { QuestionButton } from "../buttons/question_button";
 
-export class QuestionnaireBot implements BotRunner {
-    private client = new Client({
-        intents: [
-            Intents.FLAGS.GUILDS,
-            Intents.FLAGS.GUILD_MESSAGES,
-        ]
-    });
-    private commands: Command[] = [
-        new Ping,
-        new Question,
-    ];
-    private buttons: Button[] = [
-        new QuestionButton
-    ];
+export class BotRunner {
+    private name: string;
+    private token: string;
+    private client: Client;
+    private commands: Command[];
+    private buttons: Button[];
+    
+    constructor(info: BotInfo) {
+        this.name = info.name;
+        this.token = info.token;
+        this.client = new Client({intents: info.intents});
+        this.commands = info.commands;
+        this.buttons = info.buttons;
+    }
 
     async awake() {
         this.client.once('ready', () => { this.on_ready(); });
         this.client.on('interactionCreate', (interaction) => { this.on_interaction(interaction); });
-
-        const token = process.env.QUESTIONNAIRE_BOT_TOKEN;
-        this.client.login(token);
+        this.client.login(this.token);
     }
-    
+
     async on_interaction(interaction: Interaction) {
         const guild = interaction.guild;
         if(guild !== null) {
@@ -46,16 +41,12 @@ export class QuestionnaireBot implements BotRunner {
             });
         }
     }
-    
+
     async on_ready() {
-        /*
-        this.commands.forEach(async (command) => {
-            await this.client.application?.commands.create(command.data);
-        });
-        */
         await this.client.application?.commands
             .set(this.commands.map((com) => com.data))
             .then(() => { console.log("commands added"); });
-        console.log('QuestionnaireBot is ready!');
+        console.log('Bot is ready!');
     }
+
 }
