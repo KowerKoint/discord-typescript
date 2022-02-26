@@ -34,16 +34,14 @@ export class QuestionnaireBot implements BotRunner {
         }
         await interaction.user.fetch();
         if(interaction.isButton()) {
-            this.buttons.forEach(async (button) => {
+            await Promise.all(this.buttons.map(async (button) => {
                 await button.pushed(interaction);
-            });
+            }));
         }
         if(interaction.isCommand()) {
-            this.commands.forEach(async (command) => {
-                if(interaction.commandName === command.data.name) {
-                    await command.execute(this.client, interaction);
-                }
-            });
+            await Promise.all(this.commands.map(async (command) => {
+                await command.execute(this.client, interaction);
+            }));
         }
     }
     
