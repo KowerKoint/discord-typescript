@@ -1,5 +1,5 @@
 import { BotInfo, Button, Command} from "./interfaces"
-import { Client, Intents, Interaction } from "discord.js";
+import { Client, Interaction } from "discord.js";
 
 export class BotRunner {
     private name: string;
@@ -44,7 +44,7 @@ export class BotRunner {
         await this.client.application?.commands
             .set(this.commands.map((com) => com.data))
             .then(() => { console.log("commands added"); });
-        console.log('Bot is ready!');
+        console.log(this.name + ' is ready!');
     }
 
 }
