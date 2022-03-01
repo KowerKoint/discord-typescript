@@ -35,7 +35,9 @@ export class BotRunner {
         }
         if(interaction.isCommand()) {
             await Promise.all(this.commands.map(async (command) => {
-                await command.execute(this.client, interaction);
+                if(interaction.commandName === command.data.name) {
+                    await command.execute(this.client, interaction);
+                }
             }));
         }
     }
