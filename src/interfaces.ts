@@ -1,4 +1,4 @@
-import { ApplicationCommandData, ButtonInteraction, Client, CommandInteraction } from "discord.js";
+import { ApplicationCommandData, ButtonInteraction, Client, CommandInteraction, Message } from "discord.js";
 
 export interface Command {
     data: ApplicationCommandData,
@@ -9,10 +9,15 @@ export interface Button {
     pushed(interaction: ButtonInteraction): Promise<void>
 }
 
+export interface MessageListener {
+    listen(message: Message): Promise<void>
+}
+
 export interface BotInfo {
     name: string,
     token: string,
     intents: number[],
-    commands: Command[],
-    buttons: Button[]
+    commands?: Command[] | undefined,
+    buttons?: Button[] | undefined,
+    messageListeners?: MessageListener[]
 }

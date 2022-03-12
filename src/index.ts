@@ -4,6 +4,7 @@ import { Ping } from './commands/ping';
 import { Question } from './commands/question';
 import { QuestionButton } from './buttons/question_button';
 import { Matsuya } from "./commands/matsuya";
+import { Reacter } from "./message_listeners/reacter";
 
 require('dotenv').config();
 
@@ -24,6 +25,9 @@ if(process.env.TEST_TOKEN == undefined) {
         ],
         buttons: [
             new QuestionButton
+        ],
+        messageListeners: [
+            new Reacter
         ]
     }).awake();
 }
@@ -61,7 +65,8 @@ if(process.env.YAROWA_BOT_TOKEN == undefined) {
         commands: [
             new Matsuya
         ],
-        buttons: [
+        messageListeners: [
+            new Reacter
         ]
     }).awake();
 }

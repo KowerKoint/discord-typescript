@@ -1,24 +1,33 @@
-import { BotInfo, Button, Command} from "./interfaces"
-import { Client, Interaction } from "discord.js";
+import { BotInfo, Button, Command, MessageListener} from "./interfaces"
+import { Client, Interaction, Message } from "discord.js";
 
 export class BotRunner {
     private name: string;
     private token: string;
     private client: Client;
-    private commands: Command[];
-    private buttons: Button[];
+    private commands: Command[] = [];
+    private buttons: Button[] = [];
+    private messageListeners: MessageListener[] = [];
     
     constructor(info: BotInfo) {
         this.name = info.name;
         this.token = info.token;
         this.client = new Client({intents: info.intents});
-        this.commands = info.commands;
-        this.buttons = info.buttons;
+        if(info.commands != undefined) {
+            this.commands = info.commands;
+        }
+        if(info.buttons != undefined) {
+            this.buttons = info.buttons;
+        }
+        if(info.messageListeners != undefined) {
+            this.messageListeners = info.messageListeners;
+        }
     }
 
     async awake() {
         this.client.once('ready', () => { this.on_ready(); });
         this.client.on('interactionCreate', (interaction) => { this.on_interaction(interaction); });
+        this.client.on('messageCreate', (message) => { this.on_message(message); });
         this.client.login(this.token);
     }
 
@@ -41,6 +50,12 @@ export class BotRunner {
             }));
         }
     }
+    
+    async on_message(message: Message) {
+        await Promise.all(this.messageListeners.map(async (messageListener) => {
+            await messageListener.listen(message);
+        }));
+    }
 
     async on_ready() {
         await this.client.application?.commands
@@ -48,5 +63,4 @@ export class BotRunner {
             .then(() => { console.log("commands added"); });
         console.log(this.name + ' is ready!');
     }
-
 }
