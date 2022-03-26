@@ -1,16 +1,22 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    matsuya (1.0.0)
+    egison (1.0.0)
+    matsuya (0.4.0)
+      egison (~> 1.0)
+    saize (0.0.1)
+      egison (~> 1.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
-  matsuya
+  matsuya (= 0.4.0)
+  saize
 
 RUBY VERSION
-   ruby 3.1.1p18
+   ruby 2.7.5p203
 
 BUNDLED WITH
    2.3.7
