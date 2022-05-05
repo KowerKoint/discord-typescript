@@ -45,7 +45,6 @@ if(process.env.QUESTIONNAIRE_BOT_TOKEN == undefined) {
             Intents.FLAGS.GUILD_MESSAGES,
         ],
         commands: [
-            new Ping,
             new Question,
         ],
         buttons: [
