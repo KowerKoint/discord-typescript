@@ -60,7 +60,7 @@ export class Question implements Command {
             options.push(["no", "いいえ"]);
         }
         const embed: MessageEmbedOptions = {};
-        embed.title = interaction.options.getString("question")!;
+        embed.title = interaction.options.getString("question", true);
         const buttons: MessageButton[] = [];
         const fields: EmbedFieldData[] = [];
         options.forEach((option) => {
