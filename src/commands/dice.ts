@@ -15,8 +15,8 @@ export class Dice implements Command {
         ]
     };
 
-    async execute(client: Client, interaction: CommandInteraction) {
+    async execute(_client: Client, interaction: CommandInteraction) {
         const faces = interaction.options.getInteger("faces", true);
-        await interaction.reply(Math.floor(Math.random() * faces).toString());
+        await interaction.reply((Math.floor(Math.random() * faces) + 1).toString());
     }
 }
