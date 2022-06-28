@@ -7,6 +7,7 @@ import { Matsuya } from "./commands/matsuya";
 import { Reacter } from "./message_listeners/reacter";
 import { Saize } from "./commands/saize";
 import { Dice } from "./commands/dice";
+import { Shuffle } from "./commands/shuffle";
 
 require('dotenv').config();
 
@@ -25,7 +26,8 @@ if(process.env.TEST_TOKEN == undefined) {
             new Question,
             new Matsuya,
             new Saize,
-            new Dice
+            new Dice,
+            new Shuffle
         ],
         buttons: [
             new QuestionButton
@@ -68,7 +70,8 @@ if(process.env.YAROWA_BOT_TOKEN == undefined) {
         commands: [
             new Matsuya,
             new Saize,
-            new Dice
+            new Dice,
+            new Shuffle
         ],
         messageListeners: [
             new Reacter
